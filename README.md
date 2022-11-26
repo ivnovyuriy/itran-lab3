@@ -2,52 +2,32 @@
 
 2.1 Installing minicube (microk8s on Apple silicon)
 
--> brew install ubuntu/microk8s/microk8s
+1. Create an AWS infrastructure via terraform
 
-![microk8s](https://github.com/ivnovyuriy/lab2/blob/master/img/1.png)
+- EC2 instance
+- SecurityGroup
+- VPC
 
-![microk8s](https://github.com/ivnovyuriy/lab2/blob/master/img/2.png)
+# run these commands
+-> terraform plan
+-> terraform apply -auto-approve
 
-![microk8s](https://github.com/ivnovyuriy/lab2/blob/master/img/3.png)
+After provisioning all the staff we’ll see the OUTPUT (5min approx)
 
-2.2 Create namespace
+Or you can type the command:
 
--> microk8s kubectl create namespace mynamespace
+-> terraform output
 
--> microk8s kubectl get namespaces
+OUTPUT:
 
-![namespace](https://github.com/ivnovyuriy/lab2/blob/master/img/5.png)
+instance = "3.84.174.145"
 
-2.3 Deployment file to install nginx
+2. ssh -i yuriy_ec2.pem ubuntu@3.84.174.145
 
--> microk8s kubectl apply -f main.yaml -n mynamespace
+3. Test services is running
 
-![deployment](https://github.com/ivnovyuriy/lab2/blob/master/img/6.png)
+-> service Nginx status
 
-test deployment
+-> service MySQL status
 
--> microk8s kubectl get deployments --namespace=mynamespace
-
-test pods
-
--> microk8s kubectl get pods --namespace=mynamespace
-
-2.4 install ingress controller
-
--> microk8s enable ingress
-
-![ingress](https://github.com/ivnovyuriy/lab2/blob/master/img/10.png)
-
-2.5 Run commands
-
--> microk8s kubectl get pods -A
-
-![pods](https://github.com/ivnovyuriy/lab2/blob/master/img/7.png)
-
--> microk8s kubectl get svc
-
-![svc](https://github.com/ivnovyuriy/lab2/blob/master/img/8.png)
-
--> kubectl get all
-
-![all](https://github.com/ivnovyuriy/lab2/blob/master/img/9.png)
+![wordpress installed successfully](https://github.com/ivnovyuriy/itran-lab3/blob/6ff4be705897a5e4b900d3ca1237dd91c59dacc6/img/1.png)
