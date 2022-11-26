@@ -1,7 +1,5 @@
 # itran-lab3
 
-2.1 Installing minicube (microk8s on Apple silicon)
-
 1. Create an AWS infrastructure via terraform
 
 - EC2 instance
